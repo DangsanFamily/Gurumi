@@ -4,9 +4,6 @@ public class BlockResponse {
 
     private String message;
 
-    public BlockResponse() {
-    }
-
     public BlockResponse(String message) {
         this.message = message;
     }
