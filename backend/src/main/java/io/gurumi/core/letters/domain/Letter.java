@@ -12,7 +12,8 @@ public class Letter {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    protected Letter() {}
+    protected Letter() {
+    }
 
     public Letter(Long id) {
         this.id = id;

@@ -18,7 +18,8 @@ public class Block {
     @ManyToOne(cascade = CascadeType.REMOVE)
     private Letter letter;
 
-    protected Block() {}
+    protected Block() {
+    }
 
     public Block(Long id, String message, Letter letter) {
         this.id = id;
