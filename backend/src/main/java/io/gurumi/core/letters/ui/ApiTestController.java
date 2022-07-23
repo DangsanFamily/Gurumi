@@ -1,4 +1,4 @@
-package io.gurumi.core.controller;
+package io.gurumi.core.letters.ui;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
