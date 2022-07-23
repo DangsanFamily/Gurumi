@@ -2,9 +2,9 @@
 
 ## 1. Node.js 설치
 
-[Window 설치 방법]("https://kitty-geno.tistory.com/61")
+[Window 설치 방법](https://kitty-geno.tistory.com/61)
 
-[Mac 설치 방법]("https://memostack.tistory.com/274")
+[Mac 설치 방법](https://memostack.tistory.com/274)
 
 ## 2. yarn 설치
 
