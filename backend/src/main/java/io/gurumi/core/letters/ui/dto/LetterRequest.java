@@ -13,4 +13,8 @@ public class LetterRequest {
     public LetterRequest(List<BlockRequest> blocks) {
         this.blocks = blocks;
     }
+
+    public List<BlockRequest> getBlocks() {
+        return blocks;
+    }
 }

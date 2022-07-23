@@ -15,7 +15,7 @@ public class Block {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String message;
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Letter letter;
 
     protected Block() {
@@ -25,5 +25,21 @@ public class Block {
         this.id = id;
         this.message = message;
         this.letter = letter;
+    }
+
+    public Block(String message) {
+        this.message = message;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public Letter getLetter() {
+        return letter;
     }
 }
