@@ -4,10 +4,11 @@
   align-items: center;
   justify-content: center;
   background-size: cover;
-  margin: auto;
+  margin: 0 auto;
   max-width: 500px;
   min-height: 100vh;
   font-family: 'Gugi', cursive;
+  vertical-align: baseline;
 }
 
 .App-logo {

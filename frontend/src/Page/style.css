@@ -1,37 +1,263 @@
 .main-page {
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  top: 0;
-  max-width: 100%;
-  min-height: 100vh;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    top: 0;
+    max-width: 100%;
+    min-height: 100vh;
 }
 .main-page .title {
-  padding-top: 10vh;
-  height: 10vh;
-  align-items: center;
-  justify-content: center;
-  font-size: 80px;
-  color: white;
-  text-align: center;
+    padding-top: 30vh;
+    height: 10vh;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    color: white;
+    text-align: center;
+}
+.main-page .title .logo {
+    width: 80px;
 }
 .main-page .body-container {
-  padding-top: 50vh;
-  height: 30vh;
-  font-size: 80px;
-  top: 0;
-  color: white;
-  text-align: center;
+    padding-top: 20vh;
+    height: 30vh;
+    font-size: 80px;
+    top: 0;
+    color: white;
+    text-align: center;
 }
-.main-page .body-container .btn {
-  height: 10vh;
-  font-size: 40px;
-  font-family: 'Gugi', cursive;
-  color: white;
-  text-align: center;
-  background-color: transparent;
-  border-color: white;
-  border-radius: 10px;
-  border-style: solid;
+.main-page .body-container .start-button {
+    height: 70px;
+    font-size: 40px;
+    font-family: "Gugi", cursive;
+    color: #ff97bf;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-color: white;
+    border-radius: 10px;
+    border-style: solid;
+}
+.main-page .body-container .start-button:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.create-message-container {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    top: 0;
+    max-width: 100%;
+    min-height: 100vh;
+}
+.create-message-container .header {
+    height: 10vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+}
+.create-message-container .body-layer {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    overflow: auto;
+}
+
+.create-message-container .body-layer .cloud-container {
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    height: 150px;
+}
+
+.create-message-container .body-layer .left {
+    margin-right: auto;
+}
+.create-message-container .body-layer .right {
+    margin-left: auto;
+}
+.create-message-container .body-layer .cloud-container .cloud {
+    height: 150px;
+}
+
+.create-message-container .body-layer .cloud-add {
+    align-items: center;
+
+    display: flex;
+    height: 50px;
+}
+.create-message-container .button-layer {
+    height: 10vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+}
+.create-message-container .button-layer .left {
+    width: 40%;
+    padding-right: 10%;
+}
+.create-message-container .button-layer .right {
+    width: 40%;
+    padding-left: 10%;
+}
+.create-message-container .button-layer .button {
+    height: 60px;
+    width: 120px;
+    font-size: 20px;
+    font-family: "Gugi", cursive;
+    color: #ff97bf;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-color: white;
+    border-radius: 30px;
+    border-style: solid;
+}
+.create-message-container .button-layer .button:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.modal {
+    text-align: left;
+    position: fixed;
+    width: 80%;
+    max-width: 450px;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px 20px 20px 20px;
+}
+.modal .header {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: left;
+    display: flex;
+    width: 100%;
+    height: 20%;
+    border-radius: 20px 20px 0 0;
+    border: solid #ff97bf;
+    border-bottom: solid 1px #ff97bf;
+}
+.modal .body {
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 0 0 20px 20px;
+    border: solid #ff97bf;
+    width: 100%;
+    height: 80%;
+}
+
+.modal .header .title {
+    text-align: left;
+    color: #ff97bf;
+    width: 80%;
+}
+
+.message-modal {
+    position: fixed;
+    width: 80%;
+    max-width: 450px;
+    height: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px 20px 20px 20px;
+}
+.message-modal .header {
+    background-color: rgba(255, 255, 255, 0.8);
+
+    font-size: 120%;
+
+    width: 100%;
+    height: 10%;
+    border-radius: 20px 20px 0 0;
+    border: solid #ff97bf;
+}
+.message-modal .body {
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid #ff97bf;
+    border-top: 0px;
+    width: 100%;
+    height: 80%;
+}
+.message-modal .body .color-container {
+    width: 100%;
+    height: 20%;
+}
+.message-modal .body .message-container {
+    width: 100%;
+    height: 80%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.message-modal .body .message-container .message {
+    width: 90%;
+    height: 90%;
+    resize: none;
+    border: solid #ff97bf 1px;
+}
+.message-modal .footer {
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    overflow: hidden;
+    border: solid #ff97bf;
+    border-top: 0px;
+    border-radius: 0 0 20px 20px;
+    width: 100%;
+    height: 10%;
+}
+.message-modal .footer .cancel {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ff97bf;
+}
+.message-modal .footer .register {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff97bf;
+    opacity: 0.5;
+    color: white;
+}
+
+.message-modal .footer .cancel {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ff97bf;
+}
+
+.message-modal .header .title {
+    text-align: center;
+    color: #ff97bf;
 }
