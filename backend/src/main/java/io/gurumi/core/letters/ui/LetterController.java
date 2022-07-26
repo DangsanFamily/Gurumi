@@ -1,8 +1,14 @@
 package io.gurumi.core.letters.ui;
 
+import io.gurumi.core.blocks.domain.Block;
 import io.gurumi.core.blocks.ui.dto.BlockRequest;
 import io.gurumi.core.blocks.ui.dto.BlockResponse;
+import io.gurumi.core.letters.domain.Letter;
+import io.gurumi.core.letters.service.LetterService;
+import io.gurumi.core.letters.ui.dto.LetterRequest;
 import io.gurumi.core.letters.ui.dto.LetterResponse;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
@@ -15,15 +21,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/letters")
 public class LetterController {
 
-    @PostMapping
-    public ResponseEntity<LetterResponse> createLetter(@RequestBody BlockRequest blockRequest) {
+    private final LetterService letterService;
 
-        Long letterId = 1L;
-        List<BlockResponse> blocks = Arrays.asList(
-            new BlockResponse("자니...?"),
-            new BlockResponse("자는구나...")
-        );
-        LetterResponse response = new LetterResponse(letterId, blocks);
+    public LetterController(LetterService letterService) {
+        this.letterService = letterService;
+    }
+
+    @PostMapping
+    public ResponseEntity<LetterResponse> createLetter(@RequestBody LetterRequest letterRequest) {
+        LetterResponse response=letterService.createLetter(letterRequest);
         return ResponseEntity.ok().body(response);
     }
 }
