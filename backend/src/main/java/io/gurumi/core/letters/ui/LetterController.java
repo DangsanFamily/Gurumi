@@ -29,22 +29,7 @@ public class LetterController {
 
     @PostMapping
     public ResponseEntity<LetterResponse> createLetter(@RequestBody LetterRequest letterRequest) {
-
-        Letter letter=letterService.makeLetter(letterRequest);
-        ArrayList<BlockResponse> blocks=new ArrayList<>();
-        for (Block block : letter.getBlocks()) {
-            blocks.add(new BlockResponse(block.getMessage()));
-        }
-
-        LetterResponse response=new LetterResponse(letter.getId(),blocks);
-//        Long letterId = 1L;
-//        List<BlockResponse> blocks = Arrays.asList(
-//            new BlockResponse("자니...?"),
-//            new BlockResponse("자는구나...")
-//        );
-//        LetterResponse response = new LetterResponse(letterId, blocks);
-
-
+        LetterResponse response=letterService.createLetter(letterRequest);
         return ResponseEntity.ok().body(response);
     }
 }

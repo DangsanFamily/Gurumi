@@ -1,21 +1,20 @@
 package io.gurumi.core.blocks.domain;
 
+import io.gurumi.core.blocks.ui.dto.BlockResponse;
 import io.gurumi.core.letters.domain.Letter;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+
+import javax.persistence.*;
 
 @Entity
 public class Block {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String message;
-    @ManyToOne(cascade = CascadeType.ALL)
+
+
+    @ManyToOne(fetch=FetchType.LAZY)
     private Letter letter;
 
     protected Block() {
@@ -29,6 +28,10 @@ public class Block {
 
     public Block(String message) {
         this.message = message;
+    }
+
+    public BlockResponse toResponse(){
+        return new BlockResponse(message);
     }
 
     public Long getId() {

@@ -1,13 +1,13 @@
 package io.gurumi.core.letters.service;
 
-import io.gurumi.core.blocks.domain.Block;
-import io.gurumi.core.blocks.ui.dto.BlockRequest;
+
 import io.gurumi.core.letters.domain.Letter;
 import io.gurumi.core.letters.domain.LetterRepository;
 import io.gurumi.core.letters.ui.dto.LetterRequest;
+import io.gurumi.core.letters.ui.dto.LetterResponse;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 
 @Service
 public class LetterService {
@@ -18,13 +18,10 @@ public class LetterService {
         this.letterRepository = letterRepository;
     }
 
-    public Letter makeLetter(LetterRequest letterRequest){
-        ArrayList<Block> blocks=new ArrayList<>();
-        for (BlockRequest block : letterRequest.getBlocks()) {
-            blocks.add(new Block(block.getMessage()));
-        }
-        Letter letter=new Letter(blocks);
+    public LetterResponse createLetter(LetterRequest letterRequest){
+        Letter letter=letterRequest.toEntity();
+        letterRepository.save(letter);
+        return letter.toResponse();
 
-        return letterRepository.save(letter);
     }
 }
