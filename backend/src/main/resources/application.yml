@@ -10,3 +10,5 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+server:
+  port: 8090
