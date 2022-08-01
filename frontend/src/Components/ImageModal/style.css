@@ -67,7 +67,7 @@
     display: inline-block;
     height: 100%;
     overflow: hidden;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center center;
     justify-content: center;
     align-items: center;

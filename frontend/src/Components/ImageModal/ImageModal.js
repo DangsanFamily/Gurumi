@@ -2,16 +2,29 @@ import axios from "axios";
 import React, { useState } from "react";
 import "../ImageModal/style.css";
 
-function ImageModal({ closImageModalFunc }) {
+function ImageModal({ closeImageModalFunc, closeModalFunc }) {
     const [image, setImage] = useState(null);
     const [uploadFile, setuploadFile] = useState();
     const cancelClicked = () => {
-        closImageModalFunc();
+        closeImageModalFunc();
     };
     const changeImage = (e) => {
         setImage(URL.createObjectURL(e.target.files[0]));
-
         setuploadFile(e.target.files[0]);
+    };
+    const registerImage = () => {
+        const formData = new FormData();
+        formData.append("type", "image");
+        formData.append("file", uploadFile);
+        // axios
+        //     .post("/blocks", formData)
+        //     .then((res) => {
+        //         closeImageModalFunc();
+        //         closeModalFunc();
+        //     })
+        //     .catch((err) => {});
+        closeImageModalFunc();
+        closeModalFunc();
     };
     return (
         <div className="image-modal">
@@ -23,7 +36,13 @@ function ImageModal({ closImageModalFunc }) {
                     <label className="input-button" for="input-file">
                         찾아보기
                     </label>
-                    <input type="file" accept="image/*" id="input-file" style={{ display: "none" }}></input>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        id="input-file"
+                        style={{ display: "none" }}
+                        onChange={changeImage}
+                    ></input>
                 </div>
 
                 <div className="img-container">
@@ -35,7 +54,9 @@ function ImageModal({ closImageModalFunc }) {
                 <div className="cancel" onClick={cancelClicked}>
                     취소
                 </div>
-                <div className="register">등록</div>
+                <div className="register" onClick={registerImage}>
+                    등록
+                </div>
             </div>
         </div>
     );

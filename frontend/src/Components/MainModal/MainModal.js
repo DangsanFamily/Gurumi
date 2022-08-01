@@ -43,7 +43,9 @@ function MainModal({ closeModalFunc, addCloudFunc }) {
                     isNew={true}
                 />
             ) : null}
-            {imageModal === true ? <ImageModal closeImageModalFunc={closeImageModal} /> : null}
+            {imageModal === true ? (
+                <ImageModal closeImageModalFunc={closeImageModal} closeModalFunc={closeModalFunc} />
+            ) : null}
             {mainModal === true ? (
                 <div className="modal">
                     <div className="header">
