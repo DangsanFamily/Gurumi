@@ -1,0 +1,37 @@
+.modal {
+    text-align: left;
+    position: fixed;
+    width: 80%;
+    max-width: 450px;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px 20px 20px 20px;
+}
+.modal .header {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: left;
+    display: flex;
+    width: 100%;
+    height: 20%;
+    border-radius: 20px 20px 0 0;
+    border: solid #ff97bf;
+    border-bottom: solid 1px #ff97bf;
+}
+.modal .body {
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 0 0 20px 20px;
+    border: solid #ff97bf;
+    width: 100%;
+    height: 80%;
+}
+
+.modal .header .title {
+    text-align: left;
+    color: #ff97bf;
+    width: 80%;
+}
