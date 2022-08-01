@@ -1,0 +1,114 @@
+.image-modal {
+    position: fixed;
+    width: 80%;
+    max-width: 450px;
+    height: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px 20px 20px 20px;
+}
+.image-modal .header {
+    background-color: rgba(255, 255, 255, 0.8);
+
+    font-size: 120%;
+
+    width: 100%;
+    height: 10%;
+    border-radius: 20px 20px 0 0;
+    border: solid #ff97bf;
+}
+.image-modal .body {
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid #ff97bf;
+    border-top: 0px;
+    width: 100%;
+    height: 80%;
+}
+.image-modal .body .input-container {
+    width: 100%;
+
+    padding-top: 2.5%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+}
+.image-modal .body .input-container .input-button {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    background-color: #ff97bf;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.image-modal .body .img-container {
+    width: 90%;
+    height: 90%;
+    margin-bottom: 5%;
+    margin-top: 2.5%;
+    border-style: solid;
+    border-color: #ff97bf;
+    border-radius: 10px;
+    border-width: 1px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+.image-modal .body .img-container .img {
+    display: inline-block;
+    height: 100%;
+    overflow: hidden;
+    object-fit: contain;
+    object-position: center center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    align-self: center;
+    align-content: center;
+
+    border-radius: 5px;
+}
+.image-modal .footer {
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    overflow: hidden;
+    border: solid #ff97bf;
+    border-top: 0px;
+    border-radius: 0 0 20px 20px;
+    width: 100%;
+    height: 10%;
+}
+.image-modal .footer .cancel {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ff97bf;
+}
+.image-modal .footer .register {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff97bf;
+    opacity: 0.5;
+    color: white;
+}
+
+.image-modal .header .title {
+    text-align: center;
+    color: #ff97bf;
+}
