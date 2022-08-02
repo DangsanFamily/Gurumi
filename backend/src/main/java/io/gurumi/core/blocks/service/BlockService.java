@@ -5,8 +5,10 @@ import io.gurumi.core.blocks.domain.BlockRepository;
 import io.gurumi.core.blocks.ui.dto.BlockRequest;
 import io.gurumi.core.blocks.ui.dto.BlockResponse;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class BlockService {
 
     private final BlockRepository blockRepository;
@@ -15,23 +17,28 @@ public class BlockService {
         this.blockRepository = blockRepository;
     }
 
-    public BlockResponse readBlock(Long blockId) {
-        Block block = blockRepository.findById(blockId).get();
-        return block.toResponse();
+    private Block findById(Long blockId) {
+        return blockRepository.findById(blockId)
+            .orElseThrow(IllegalArgumentException::new);
+    }
 
+    @Transactional(readOnly = true)
+    public BlockResponse readBlock(Long blockId) {
+        Block block = findById(blockId);
+        return BlockResponse.of(block);
     }
 
     public BlockResponse createBlock(BlockRequest blockRequest) {
         Block block = blockRequest.toEntity();
         blockRepository.save(block);
-        return block.toResponse();
+        return BlockResponse.of(block);
     }
 
     public BlockResponse updateBlock(Long blockId, BlockRequest blockRequest) {
-        Block block = blockRepository.findById(blockId).get();
-        block.setContent(blockRequest.getContent());
-        blockRepository.save(block);
-        return block.toResponse();
+        Block existedBlock = findById(blockId);
+        Block updatedBlock = blockRequest.toEntity();
+        existedBlock.update(updatedBlock);
+        return BlockResponse.of(existedBlock);
     }
 
     public void deleteBlock(Long blockId) {

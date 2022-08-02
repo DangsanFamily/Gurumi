@@ -9,16 +9,9 @@ public class BlockRequest {
     private String content;
 
 
-
-    public BlockRequest() {
+    public Block toEntity() {
+        return new Block(this.type, this.content);
     }
-
-    public BlockRequest(String type,String content) {
-        this.type=type;
-        this.content = content;
-
-    }
-
 
     public String getType() {
         return type;
@@ -27,10 +20,4 @@ public class BlockRequest {
     public String getContent() {
         return content;
     }
-
-    public Block toEntity(){
-        return new Block(this.type,this.content);
-    }
-
-
 }
