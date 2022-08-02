@@ -5,9 +5,11 @@ import io.gurumi.core.blocks.domain.Block;
 public class BlockResponse {
 
 
-    private final Long id;
-    private final String type;
-    private final String content;
+    private Long id;
+    private String type;
+    private String content;
+
+    protected BlockResponse() {}
 
     private BlockResponse(Long id, String type, String content) {
         this.id = id;

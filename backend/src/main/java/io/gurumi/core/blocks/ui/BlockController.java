@@ -24,7 +24,7 @@ public class BlockController {
         this.blockService = blockService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<BlockResponse> readBlock(@PathVariable Long id) {
         BlockResponse blockResponse = blockService.readBlock(id);
         return ResponseEntity.ok(blockResponse);
@@ -37,13 +37,13 @@ public class BlockController {
         return ResponseEntity.created(location).body(blockResponse);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("{id}")
     public ResponseEntity<BlockResponse> updateBlock(@PathVariable Long id, @RequestBody BlockRequest blockRequest) {
         BlockResponse blockResponse = blockService.updateBlock(id, blockRequest);
         return ResponseEntity.ok(blockResponse);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteBlock(@PathVariable Long id) {
         blockService.deleteBlock(id);
         return ResponseEntity.noContent().build();
