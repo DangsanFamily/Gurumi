@@ -1,9 +1,12 @@
 package io.gurumi.core.blocks.domain;
 
-import io.gurumi.core.blocks.ui.dto.BlockResponse;
 import io.gurumi.core.letters.domain.Letter;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Block {
@@ -13,20 +16,10 @@ public class Block {
     private Long id;
     private String type;
     private String content;
-
-
-
     @ManyToOne(fetch=FetchType.LAZY)
     private Letter letter;
 
     protected Block() {
-    }
-
-    public Block(Long id, String type, String content, Letter letter) {
-        this.id = id;
-        this.type=type;
-        this.content = content;
-        this.letter = letter;
     }
 
     public Block(String type,String content) {
@@ -34,29 +27,19 @@ public class Block {
         this.content = content;
     }
 
-
+    public void update(Block other) {
+        this.content = other.content;
+    }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public String getType() {
-        return type;
+        return this.type;
     }
 
     public String getContent() {
         return content;
-    }
-
-    public Letter getLetter() {
-        return letter;
-    }
-
-    public BlockResponse toResponse(){
-        return new BlockResponse(this.id,this.type,this.content);
-    };
-
-    public void setContent(String content) {
-        this.content = content;
     }
 }
