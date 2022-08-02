@@ -11,7 +11,9 @@ public class Block {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String message;
+    private String type;
+    private String content;
+
 
 
     @ManyToOne(fetch=FetchType.LAZY)
@@ -20,29 +22,41 @@ public class Block {
     protected Block() {
     }
 
-    public Block(Long id, String message, Letter letter) {
+    public Block(Long id, String type, String content, Letter letter) {
         this.id = id;
-        this.message = message;
+        this.type=type;
+        this.content = content;
         this.letter = letter;
     }
 
-    public Block(String message) {
-        this.message = message;
+    public Block(String type,String content) {
+        this.type=type;
+        this.content = content;
     }
 
-    public BlockResponse toResponse(){
-        return new BlockResponse(message);
-    }
+
 
     public Long getId() {
         return id;
     }
 
-    public String getMessage() {
-        return message;
+    public String getType() {
+        return type;
+    }
+
+    public String getContent() {
+        return content;
     }
 
     public Letter getLetter() {
         return letter;
+    }
+
+    public BlockResponse toResponse(){
+        return new BlockResponse(this.id,this.type,this.content);
+    };
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }
