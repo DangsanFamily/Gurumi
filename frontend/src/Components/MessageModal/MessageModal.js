@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import "../MessageModal/style.css";
 
@@ -10,7 +11,24 @@ function MessageModal({ closeMessageModalFunc, registerMessageFunc, closeModalFu
         setMessage(e.target.value);
     };
     const registerMessage = () => {
-        registerMessageFunc(message);
+        const req = {
+            type: "text",
+            content: message,
+        };
+        // axios
+        //     .post("/letters", req)
+        //     .then((res) => {
+        //         registerMessageFunc(res.data);
+        //         closeMessageModalFunc();
+        //         closeModalFunc();
+        //     })
+        //     .catch((err) => {});
+        const res = {
+            id: 0,
+            type: "text",
+            content: message,
+        };
+        registerMessageFunc(res);
         closeMessageModalFunc();
         closeModalFunc();
     };

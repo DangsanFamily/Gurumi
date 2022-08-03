@@ -8,19 +8,15 @@ function CreateMessagePage() {
     const [modal, setModal] = useState(false);
 
     const [cloud, setCloud] = useState([]);
-    const [cloudID, setCloudID] = useState(0);
+    // const [cloudID, setCloudID] = useState(0);
     const [messageRevisedModal, setMessageRevisedModal] = useState(false);
     const [clickedCloud, setClickedCloud] = useState({});
-    const addCloud = (message) => {
-        const newCloud = {
-            message: message,
-
-            id: cloudID,
-        };
-
+    const addCloud = (block) => {
+        const newCloud = block;
+        console.log(newCloud);
         setCloud([...cloud, newCloud]);
 
-        setCloudID(cloudID + 1);
+        // setCloudID(cloudID + 1);
     };
     const showModal = () => {
         setModal(true);
@@ -42,8 +38,8 @@ function CreateMessagePage() {
     const reviseCloud = (exCloud, message) => {
         const reviseCloud = {
             id: exCloud.id,
-
-            message: message,
+            type: exCloud.type,
+            content: message,
         };
         setCloud(cloud.map((c) => (exCloud.id === c.id ? { ...c, ...reviseCloud } : c)));
     };

@@ -1,13 +1,26 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { BsTrash } from "react-icons/bs";
 import "./style.css";
 
 function MessageRevisedModal({ cloud, reviseCloudFunc, closeModalFunc, removeCloudFunc }) {
-    const [message, setMessage] = useState(cloud.message);
+    const [message, setMessage] = useState(cloud.content);
     const textareaHandler = (e) => {
         setMessage(e.target.value);
     };
     const reviseCloud = () => {
+        const req = {
+            id: cloud.id,
+            type: cloud.type,
+            content: message,
+        };
+        // axios
+        //     .patch("/blocks", req)
+        //     .then((res) => {
+        //         reviseCloudFunc(cloud, message);
+        //         closeModalFunc();
+        //     })
+        //     .catch((err) => {});
         reviseCloudFunc(cloud, message);
         closeModalFunc();
     };
@@ -15,6 +28,13 @@ function MessageRevisedModal({ cloud, reviseCloudFunc, closeModalFunc, removeClo
         closeModalFunc();
     };
     const removeCloud = () => {
+        // axios
+        //     .delete(`/blocks/${cloud.id}`)
+        //     .then((res) => {
+        //         removeCloudFunc(cloud.id);
+        //         closeModalFunc();
+        //     })
+        //     .catch((err) => {});
         removeCloudFunc(cloud.id);
         closeModalFunc();
     };
