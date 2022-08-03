@@ -15,22 +15,16 @@ function MessageModal({ closeMessageModalFunc, registerMessageFunc, closeModalFu
             type: "text",
             content: message,
         };
-        // axios
-        //     .post("/letters", req)
-        //     .then((res) => {
-        //         registerMessageFunc(res.data);
-        //         closeMessageModalFunc();
-        //         closeModalFunc();
-        //     })
-        //     .catch((err) => {});
-        const res = {
-            id: 0,
-            type: "text",
-            content: message,
-        };
-        registerMessageFunc(res);
-        closeMessageModalFunc();
-        closeModalFunc();
+        axios
+            .post("/blocks", req)
+            .then((res) => {
+                console.log(res.data)
+                registerMessageFunc(res.data.id);
+                closeMessageModalFunc();
+                closeModalFunc();
+            })
+            .catch((err) => {});
+        
     };
 
     return (

@@ -11,10 +11,9 @@ function CreateMessagePage() {
     // const [cloudID, setCloudID] = useState(0);
     const [messageRevisedModal, setMessageRevisedModal] = useState(false);
     const [clickedCloud, setClickedCloud] = useState({});
-    const addCloud = (block) => {
-        const newCloud = block;
-        console.log(newCloud);
-        setCloud([...cloud, newCloud]);
+    const addCloud = (id) => {
+       
+        setCloud([...cloud, id]);
 
         // setCloudID(cloudID + 1);
     };
@@ -26,26 +25,19 @@ function CreateMessagePage() {
     };
 
     const showMessageRevisedModal = (id) => {
-        let target = cloud.find((c) => c.id === id);
+        // let target = cloud.find((c) => c.id === id);
 
-        setClickedCloud(target);
+        setClickedCloud(id);
         setMessageRevisedModal(true);
     };
     const closeRevisedMessageModal = () => {
         setMessageRevisedModal(false);
     };
 
-    const reviseCloud = (exCloud, message) => {
-        const reviseCloud = {
-            id: exCloud.id,
-            type: exCloud.type,
-            content: message,
-        };
-        setCloud(cloud.map((c) => (exCloud.id === c.id ? { ...c, ...reviseCloud } : c)));
-    };
+   
 
     const removeCloud = (id) => {
-        setCloud(cloud.filter((c) => c.id !== id));
+        setCloud(cloud.filter((c) => c !== id));
     };
 
     return (
@@ -54,7 +46,7 @@ function CreateMessagePage() {
             {messageRevisedModal === true ? (
                 <MessageRevisedModal
                     cloud={clickedCloud}
-                    reviseCloudFunc={reviseCloud}
+                   
                     closeModalFunc={closeRevisedMessageModal}
                     removeCloudFunc={removeCloud}
                 />
@@ -69,7 +61,7 @@ function CreateMessagePage() {
                             className={className}
                             key={index}
                             onClick={() => {
-                                showMessageRevisedModal(c.id);
+                                showMessageRevisedModal(c);
                             }}
                         >
                             {" "}
