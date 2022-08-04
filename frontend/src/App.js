@@ -1,6 +1,6 @@
 import React from "react";
 import MainPage from "./Page/MainPage";
-import CreateMessagePage from "./Page/CreateMessagePage";
+import CreateLetterPage from "./Page/CreateLetterPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
@@ -11,7 +11,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<MainPage />} />
-                    <Route path="/create-message" element={<CreateMessagePage />} />
+                    <Route path="/create-message" element={<CreateLetterPage />} />
                 </Routes>
             </BrowserRouter>
         </div>

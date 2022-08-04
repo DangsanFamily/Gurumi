@@ -1,61 +1,56 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BsTrash } from "react-icons/bs";
 import "./style.css";
 
-function MessageRevisedModal({ cloud,  closeModalFunc, removeCloudFunc }) {
+function BlockRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
     const [content, setContent] = useState("");
-    const [type,setType]=useState("");
-    const [id,setId]=useState(cloud);
+    const [type, setType] = useState("");
+    const [id, setId] = useState(block);
     const textareaHandler = (e) => {
         setContent(e.target.value);
     };
     useEffect(() => {
- 
-      axios.get(`/blocks/${cloud}`).then((res)=>{
-        setContent(res.data.content)
-        setType(res.data.type)
-       
-      }).catch((err)=>{
-        console.log(err)
-      })
-    }, [])
-    
-    const reviseCloud = () => {
+        axios
+            .get(`/blocks/${block}`)
+            .then((res) => {
+                setContent(res.data.content);
+                setType(res.data.type);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
+    const reviseBlock = () => {
         const body = {
-            
             type: type,
             content: content,
         };
         axios
             .patch(`/blocks/${id}`, body)
             .then((res) => {
-                console.log(res.data)
-                
                 closeModalFunc();
             })
             .catch((err) => {});
-
     };
     const closeModal = () => {
         closeModalFunc();
     };
-    const removeCloud = () => {
+    const removeBlock = () => {
         axios
             .delete(`/blocks/${id}`)
             .then((res) => {
- 
-                removeCloudFunc(id);
+                removeBlockFunc(id);
                 closeModalFunc();
             })
             .catch((err) => {});
-      
     };
 
     return (
         <div className="message-modal">
             <div className="header" style={{ backgroundColor: "red", borderColor: "red", opacity: "0.8" }}>
-                <BsTrash color="black" size="32" onClick={removeCloud}></BsTrash>
+                <BsTrash color="black" size="32" onClick={removeBlock}></BsTrash>
             </div>
             <div className="body">
                 <div className="color-container"></div>
@@ -68,7 +63,7 @@ function MessageRevisedModal({ cloud,  closeModalFunc, removeCloudFunc }) {
                     취소
                 </div>
 
-                <div className="register" onClick={reviseCloud}>
+                <div className="register" onClick={reviseBlock}>
                     수정
                 </div>
             </div>
@@ -76,4 +71,4 @@ function MessageRevisedModal({ cloud,  closeModalFunc, removeCloudFunc }) {
     );
 }
 
-export default MessageRevisedModal;
+export default BlockRevisedModal;
