@@ -4,19 +4,22 @@ import io.gurumi.core.blocks.domain.Block;
 
 public class BlockRequest {
 
-    private String message;
+    private String type;
 
-    public BlockRequest() {
-    }
+    private String content;
 
-    public BlockRequest(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
     public Block toEntity(){
-        return new Block(message);
+        return new Block(
+                this.type, this.content
+        );
     }
+
+    public String getType(){
+        return type;
+    }
+
+    public String getContent(){
+        return content;
+    }
+
 }

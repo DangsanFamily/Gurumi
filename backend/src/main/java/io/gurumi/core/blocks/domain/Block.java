@@ -1,6 +1,5 @@
 package io.gurumi.core.blocks.domain;
 
-import io.gurumi.core.blocks.ui.dto.BlockResponse;
 import io.gurumi.core.letters.domain.Letter;
 
 import javax.persistence.*;
@@ -11,38 +10,48 @@ public class Block {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String message;
 
+    private String type;
+
+    private String content;
+
+    //private TimeEntity timeEntity;
+
+    /*@OneToMany(mappedBy ="post", orphanRemoval = true)
+    private List<PostImage> postImages = new ArrayList<>();*/
 
     @ManyToOne(fetch=FetchType.LAZY)
     private Letter letter;
 
-    protected Block() {
+    protected Block(){
     }
 
-    public Block(Long id, String message, Letter letter) {
-        this.id = id;
-        this.message = message;
-        this.letter = letter;
+    public Block(String type, String content){
+        this.type = type;
+        this.content = content;
     }
 
-    public Block(String message) {
-        this.message = message;
+    public void update(Block other){
+        this.content = other.content;
     }
 
-    public BlockResponse toResponse(){
-        return new BlockResponse(message);
+    public Long getId(){
+        return this.id;
     }
 
-    public Long getId() {
-        return id;
+    public String getType(){
+        return this.type;
     }
 
-    public String getMessage() {
-        return message;
+    public String getContent(){
+        return this.content;
     }
 
-    public Letter getLetter() {
-        return letter;
-    }
+    /*@Override
+    public void setTimeEntity(TimeEntity timeEntity){
+        this.timeEntity = timeEntity;
+    }*/
+
+
+
 }

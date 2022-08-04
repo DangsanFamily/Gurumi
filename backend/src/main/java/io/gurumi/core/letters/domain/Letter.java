@@ -33,7 +33,7 @@ public class Letter {
     public LetterResponse toResponse(){
         List<BlockResponse> blockList=new ArrayList<>();
         for (Block block : blocks) {
-            blockList.add(block.toResponse());
+            blockList.add(BlockResponse.of(block));
         }
         return new LetterResponse(id,blockList);
     }
