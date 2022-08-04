@@ -3,7 +3,7 @@ import axios from "axios";
 import { BsTrash } from "react-icons/bs";
 import "./style.css";
 
-function MessageRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
+function BlockRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
     const [content, setContent] = useState("");
     const [type, setType] = useState("");
     const [id, setId] = useState(block);
@@ -22,7 +22,7 @@ function MessageRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
             });
     }, []);
 
-    const reviseCloud = () => {
+    const reviseBlock = () => {
         const body = {
             type: type,
             content: content,
@@ -37,7 +37,7 @@ function MessageRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
     const closeModal = () => {
         closeModalFunc();
     };
-    const removeCloud = () => {
+    const removeBlock = () => {
         axios
             .delete(`/blocks/${id}`)
             .then((res) => {
@@ -50,7 +50,7 @@ function MessageRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
     return (
         <div className="message-modal">
             <div className="header" style={{ backgroundColor: "red", borderColor: "red", opacity: "0.8" }}>
-                <BsTrash color="black" size="32" onClick={removeCloud}></BsTrash>
+                <BsTrash color="black" size="32" onClick={removeBlock}></BsTrash>
             </div>
             <div className="body">
                 <div className="color-container"></div>
@@ -63,7 +63,7 @@ function MessageRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
                     취소
                 </div>
 
-                <div className="register" onClick={reviseCloud}>
+                <div className="register" onClick={reviseBlock}>
                     수정
                 </div>
             </div>
@@ -71,4 +71,4 @@ function MessageRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
     );
 }
 
-export default MessageRevisedModal;
+export default BlockRevisedModal;

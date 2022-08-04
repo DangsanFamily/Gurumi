@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { CgAdd } from "react-icons/cg";
-import "../CreateMessagePage/style.css";
+import "./style.css";
 import MainModal from "../../Components/MainModal/MainModal";
-import MessageRevisedModal from "../../Components/MessageReviseModal/MessageReviseModal";
+import BlockRevisedModal from "../../Components/BlockReviseModal/BlockReviseModal";
 
-function CreateMessagePage() {
+function CreateLetterPage() {
     const [modal, setModal] = useState(false);
 
-    const [blockIdList, setBloudIdList] = useState([]);
-    const [messageRevisedModal, setMessageRevisedModal] = useState(false);
+    const [blockIdList, setBlockIdList] = useState([]);
+    const [blockRevisedModal, setBlockRevisedModal] = useState(false);
     const [clickedBlockId, setClickedBlockId] = useState(0);
     const addBlock = (id) => {
-        setBloudIdList([...blockIdList, id]);
+        setBlockIdList([...blockIdList, id]);
     };
     const showModal = () => {
         setModal(true);
@@ -20,25 +20,25 @@ function CreateMessagePage() {
         setModal(false);
     };
 
-    const showMessageRevisedModal = (id) => {
+    const showBlockRevisedModal = (id) => {
         setClickedBlockId(id);
-        setMessageRevisedModal(true);
+        setBlockRevisedModal(true);
     };
-    const closeRevisedMessageModal = () => {
-        setMessageRevisedModal(false);
+    const closeRevisedBlockModal = () => {
+        setBlockRevisedModal(false);
     };
 
     const removeBlock = (id) => {
-        setBloudIdList(blockIdList.filter((blockId) => blockId !== id));
+        setBlockIdList(blockIdList.filter((blockId) => blockId !== id));
     };
 
     return (
         <div className="create-message-container">
             {modal === true ? <MainModal closeModalFunc={closeModal} addBlockFunc={addBlock} /> : null}
-            {messageRevisedModal === true ? (
-                <MessageRevisedModal
+            {blockRevisedModal === true ? (
+                <BlockRevisedModal
                     block={clickedBlockId}
-                    closeModalFunc={closeRevisedMessageModal}
+                    closeModalFunc={closeRevisedBlockModal}
                     removeBlockFunc={removeBlock}
                 />
             ) : null}
@@ -52,7 +52,7 @@ function CreateMessagePage() {
                             className={className}
                             key={index}
                             onClick={() => {
-                                showMessageRevisedModal(block);
+                                showBlockRevisedModal(block);
                             }}
                         >
                             {" "}
@@ -77,4 +77,4 @@ function CreateMessagePage() {
         </div>
     );
 }
-export default CreateMessagePage;
+export default CreateLetterPage;

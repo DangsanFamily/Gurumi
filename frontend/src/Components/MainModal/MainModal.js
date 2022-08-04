@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMessage, AiOutlineLink, AiOutlinePicture } from "react-icons/ai";
-import MessageModal from "../MessageModal/MessageModal";
+import TextModal from "../TextModal/TextModal";
 import ImageModal from "../ImageModal/ImageModal";
 import LinkModal from "../LinkModal/LinkModal";
 import "../MainModal/style.css";
 
 function MainModal({ closeModalFunc, addBlockFunc }) {
-    const [messageModal, setMessageModal] = useState(false);
+    const [textModal, setTextModal] = useState(false);
     const [imageModal, setImageModal] = useState(false);
     const [linkModal, setLinkModal] = useState(false);
     const [mainModal, setMainModal] = useState(true);
     const closeModal = () => {
         closeModalFunc();
     };
-    const showMessageModal = () => {
-        setMessageModal(true);
+    const showBlockModal = () => {
+        setTextModal(true);
         setMainModal(false);
     };
-    const registerMessage = (id) => {
+    const registerBlock = (id) => {
         addBlockFunc(id);
     };
-    const closeMessageModal = () => {
-        setMessageModal(false);
+    const closeTextModal = () => {
+        setTextModal(false);
         setMainModal(true);
     };
 
@@ -45,17 +45,17 @@ function MainModal({ closeModalFunc, addBlockFunc }) {
     return (
         <>
             {" "}
-            {messageModal === true ? (
-                <MessageModal
-                    closeMessageModalFunc={closeMessageModal}
-                    registerMessageFunc={registerMessage}
-                    closeModalFunc={closeModalFunc}
+            {textModal === true ? (
+                <TextModal
+                    closeTextModalFunc={closeTextModal}
+                    registerBlockFunc={registerBlock}
+                    closeModalFunc={closeModal}
                     isNew={true}
                 />
             ) : null}
             {linkModal === true ? <LinkModal closeLinkModalFunc={closeLinkModal} /> : null}
             {imageModal === true ? (
-                <ImageModal closeImageModalFunc={closeImageModal} closeModalFunc={closeModalFunc} />
+                <ImageModal closeImageModalFunc={closeImageModal} closeModalFunc={closeModal} />
             ) : null}
             {mainModal === true ? (
                 <div className="modal">
@@ -64,7 +64,7 @@ function MainModal({ closeModalFunc, addBlockFunc }) {
                         <AiOutlineClose color="#ff97bf" onClick={closeModal}></AiOutlineClose>
                     </div>
                     <div className="body">
-                        <AiOutlineMessage color="#ff97bf" onClick={showMessageModal} size="64"></AiOutlineMessage>
+                        <AiOutlineMessage color="#ff97bf" onClick={showBlockModal} size="64"></AiOutlineMessage>
                         <AiOutlinePicture color="#ff97bf" size="64" onClick={showImageModal}></AiOutlinePicture>
                         <AiOutlineLink color="#ff97bf" size="64" onClick={showLinkModal}></AiOutlineLink>
                     </div>
