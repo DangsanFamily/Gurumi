@@ -5,7 +5,7 @@ import ImageModal from "../ImageModal/ImageModal";
 import LinkModal from "../LinkModal/LinkModal";
 import "../MainModal/style.css";
 
-function MainModal({ closeModalFunc, addCloudFunc }) {
+function MainModal({ closeModalFunc, addBlockFunc }) {
     const [messageModal, setMessageModal] = useState(false);
     const [imageModal, setImageModal] = useState(false);
     const [linkModal, setLinkModal] = useState(false);
@@ -18,7 +18,7 @@ function MainModal({ closeModalFunc, addCloudFunc }) {
         setMainModal(false);
     };
     const registerMessage = (id) => {
-        addCloudFunc(id);
+        addBlockFunc(id);
     };
     const closeMessageModal = () => {
         setMessageModal(false);

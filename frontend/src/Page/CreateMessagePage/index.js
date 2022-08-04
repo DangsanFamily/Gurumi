@@ -7,15 +7,11 @@ import MessageRevisedModal from "../../Components/MessageReviseModal/MessageRevi
 function CreateMessagePage() {
     const [modal, setModal] = useState(false);
 
-    const [cloud, setCloud] = useState([]);
-    // const [cloudID, setCloudID] = useState(0);
+    const [blockIdList, setBloudIdList] = useState([]);
     const [messageRevisedModal, setMessageRevisedModal] = useState(false);
-    const [clickedCloud, setClickedCloud] = useState({});
-    const addCloud = (id) => {
-       
-        setCloud([...cloud, id]);
-
-        // setCloudID(cloudID + 1);
+    const [clickedBlockId, setClickedBlockId] = useState(0);
+    const addBlock = (id) => {
+        setBloudIdList([...blockIdList, id]);
     };
     const showModal = () => {
         setModal(true);
@@ -25,51 +21,46 @@ function CreateMessagePage() {
     };
 
     const showMessageRevisedModal = (id) => {
-        // let target = cloud.find((c) => c.id === id);
-
-        setClickedCloud(id);
+        setClickedBlockId(id);
         setMessageRevisedModal(true);
     };
     const closeRevisedMessageModal = () => {
         setMessageRevisedModal(false);
     };
 
-   
-
-    const removeCloud = (id) => {
-        setCloud(cloud.filter((c) => c !== id));
+    const removeBlock = (id) => {
+        setBloudIdList(blockIdList.filter((blockId) => blockId !== id));
     };
 
     return (
         <div className="create-message-container">
-            {modal === true ? <MainModal closeModalFunc={closeModal} addCloudFunc={addCloud} /> : null}
+            {modal === true ? <MainModal closeModalFunc={closeModal} addBlockFunc={addBlock} /> : null}
             {messageRevisedModal === true ? (
                 <MessageRevisedModal
-                    cloud={clickedCloud}
-                   
+                    block={clickedBlockId}
                     closeModalFunc={closeRevisedMessageModal}
-                    removeCloudFunc={removeCloud}
+                    removeBlockFunc={removeBlock}
                 />
             ) : null}
             <div className="header">마음을 전해보세요!</div>
             <div className="body-layer">
-                {cloud.map((c, index) => {
+                {blockIdList.map((block, index) => {
                     let side = index % 2 == 0 ? "left" : "right";
-                    const className = `cloud-container ${side}`;
+                    const className = `block-container ${side}`;
                     return (
                         <div
                             className={className}
                             key={index}
                             onClick={() => {
-                                showMessageRevisedModal(c);
+                                showMessageRevisedModal(block);
                             }}
                         >
                             {" "}
-                            <img className="cloud" src="./img/logo.png"></img>
+                            <img className="block" src="./img/logo.png"></img>
                         </div>
                     );
                 })}
-                <div className="cloud-add">
+                <div className="block-add">
                     {" "}
                     <CgAdd onClick={showModal} size="50"></CgAdd>
                 </div>

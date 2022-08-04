@@ -1,41 +1,38 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BsTrash } from "react-icons/bs";
 import "./style.css";
 
-function MessageRevisedModal({ cloud,  closeModalFunc, removeCloudFunc }) {
+function MessageRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
     const [content, setContent] = useState("");
-    const [type,setType]=useState("");
-    const [id,setId]=useState(cloud);
+    const [type, setType] = useState("");
+    const [id, setId] = useState(block);
     const textareaHandler = (e) => {
         setContent(e.target.value);
     };
     useEffect(() => {
- 
-      axios.get(`/blocks/${cloud}`).then((res)=>{
-        setContent(res.data.content)
-        setType(res.data.type)
-       
-      }).catch((err)=>{
-        console.log(err)
-      })
-    }, [])
-    
+        axios
+            .get(`/blocks/${block}`)
+            .then((res) => {
+                setContent(res.data.content);
+                setType(res.data.type);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
     const reviseCloud = () => {
         const body = {
-            
             type: type,
             content: content,
         };
         axios
             .patch(`/blocks/${id}`, body)
             .then((res) => {
-                console.log(res.data)
-                
                 closeModalFunc();
             })
             .catch((err) => {});
-
     };
     const closeModal = () => {
         closeModalFunc();
@@ -44,12 +41,10 @@ function MessageRevisedModal({ cloud,  closeModalFunc, removeCloudFunc }) {
         axios
             .delete(`/blocks/${id}`)
             .then((res) => {
- 
-                removeCloudFunc(id);
+                removeBlockFunc(id);
                 closeModalFunc();
             })
             .catch((err) => {});
-      
     };
 
     return (
