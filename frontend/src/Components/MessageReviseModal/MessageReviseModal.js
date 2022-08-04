@@ -1,42 +1,55 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { BsTrash } from "react-icons/bs";
 import "./style.css";
 
-function MessageRevisedModal({ cloud, reviseCloudFunc, closeModalFunc, removeCloudFunc }) {
-    const [message, setMessage] = useState(cloud.content);
+function MessageRevisedModal({ cloud,  closeModalFunc, removeCloudFunc }) {
+    const [content, setContent] = useState("");
+    const [type,setType]=useState("");
+    const [id,setId]=useState(cloud);
     const textareaHandler = (e) => {
-        setMessage(e.target.value);
+        setContent(e.target.value);
     };
+    useEffect(() => {
+ 
+      axios.get(`/blocks/${cloud}`).then((res)=>{
+        setContent(res.data.content)
+        setType(res.data.type)
+       
+      }).catch((err)=>{
+        console.log(err)
+      })
+    }, [])
+    
     const reviseCloud = () => {
-        const req = {
-            id: cloud.id,
-            type: cloud.type,
-            content: message,
+        const body = {
+            
+            type: type,
+            content: content,
         };
-        // axios
-        //     .patch("/blocks", req)
-        //     .then((res) => {
-        //         reviseCloudFunc(cloud, message);
-        //         closeModalFunc();
-        //     })
-        //     .catch((err) => {});
-        reviseCloudFunc(cloud, message);
-        closeModalFunc();
+        axios
+            .patch(`/blocks/${id}`, body)
+            .then((res) => {
+                console.log(res.data)
+                
+                closeModalFunc();
+            })
+            .catch((err) => {});
+
     };
     const closeModal = () => {
         closeModalFunc();
     };
     const removeCloud = () => {
-        // axios
-        //     .delete(`/blocks/${cloud.id}`)
-        //     .then((res) => {
-        //         removeCloudFunc(cloud.id);
-        //         closeModalFunc();
-        //     })
-        //     .catch((err) => {});
-        removeCloudFunc(cloud.id);
-        closeModalFunc();
+        axios
+            .delete(`/blocks/${id}`)
+            .then((res) => {
+ 
+                removeCloudFunc(id);
+                closeModalFunc();
+            })
+            .catch((err) => {});
+      
     };
 
     return (
@@ -47,7 +60,7 @@ function MessageRevisedModal({ cloud, reviseCloudFunc, closeModalFunc, removeClo
             <div className="body">
                 <div className="color-container"></div>
                 <div className="message-container">
-                    <textarea className="message" defaultValue={message} onChange={textareaHandler}></textarea>
+                    <textarea className="message" defaultValue={content} onChange={textareaHandler}></textarea>
                 </div>
             </div>
             <div className="footer">

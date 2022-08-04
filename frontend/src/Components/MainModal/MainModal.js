@@ -17,8 +17,8 @@ function MainModal({ closeModalFunc, addCloudFunc }) {
         setMessageModal(true);
         setMainModal(false);
     };
-    const registerMessage = (message) => {
-        addCloudFunc(message);
+    const registerMessage = (id) => {
+        addCloudFunc(id);
     };
     const closeMessageModal = () => {
         setMessageModal(false);
