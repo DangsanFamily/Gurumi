@@ -24,14 +24,14 @@
     font-size: 30px;
     color: white;
     text-align: center;
-    margin-left: 20vh;
+    margin-left: 29%;
 }
 
 .preview-message-container .back{
     display: flex;
     justify-content: flex-start;
     color: white;
-    margin-left: 5vh;
+    margin-left: 5%;
 }
 
 .preview-message-container .body{
