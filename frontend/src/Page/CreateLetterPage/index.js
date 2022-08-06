@@ -3,6 +3,7 @@ import { CgAdd } from "react-icons/cg";
 import "./style.css";
 import MainModal from "../../Components/MainModal/MainModal";
 import BlockRevisedModal from "../../Components/BlockReviseModal/BlockReviseModal";
+import {useNavigate,useLocation} from "react-router-dom";
 
 function CreateLetterPage() {
     const [modal, setModal] = useState(false);
@@ -10,6 +11,20 @@ function CreateLetterPage() {
     const [blockIdList, setBlockIdList] = useState([]);
     const [blockRevisedModal, setBlockRevisedModal] = useState(false);
     const [clickedBlockId, setClickedBlockId] = useState(0);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const preview = () => {
+        navigate("/preview",{
+            state: {
+                blockIdList: blockIdList,
+            }
+        });
+    };
+    const getBlockList = location.state.blockIdList;
+    const getBlock = () => {
+        setBlockIdList([...getBlockList])
+    }
     const addBlock = (id) => {
         setBlockIdList([...blockIdList, id]);
     };
@@ -68,7 +83,7 @@ function CreateLetterPage() {
 
             <div className="button-layer">
                 <div className="left">
-                    <button className="button">미리 보기</button>
+                    <button className="button" onClick={preview}>미리 보기</button>
                 </div>
                 <div className="right">
                     <button className="button">전송하기</button>
