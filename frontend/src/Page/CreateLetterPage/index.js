@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { CgAdd } from "react-icons/cg";
 import "./style.css";
 import MainModal from "../../Components/MainModal/MainModal";
@@ -21,10 +21,16 @@ function CreateLetterPage() {
             }
         });
     };
-    const getBlockList = location.state.blockIdList;
-    const getBlock = () => {
-        setBlockIdList([...getBlockList])
-    }
+    // const getBlockList = location.state.blockIdList;
+    // const getBlock = () => {
+    //     setBlockIdList([...getBlockList])
+    // }
+    useEffect(() => {
+
+        setBlockIdList(location.state.blockIdList)
+        console.log(location.state.blockIdList)
+    }, [])
+    
     const addBlock = (id) => {
         setBlockIdList([...blockIdList, id]);
     };
