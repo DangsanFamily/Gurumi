@@ -1,9 +1,11 @@
 package io.gurumi.core.blocks.domain;
 
 import io.gurumi.core.blocks.ui.dto.BlockResponse;
+import io.gurumi.core.image.domain.PostImage;
 import io.gurumi.core.letters.domain.Letter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Entity
 public class Block {
@@ -33,6 +35,9 @@ public class Block {
     public BlockResponse toResponse(){
         return new BlockResponse(message);
     }
+
+    //@OneToMany(mappedBy = "post", orphanRemoval = true)
+    private PostImage postImages;
 
     public Long getId() {
         return id;
