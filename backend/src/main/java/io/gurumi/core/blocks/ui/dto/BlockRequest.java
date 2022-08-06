@@ -8,9 +8,17 @@ public class BlockRequest {
 
     private String content;
 
+    public BlockRequest(String type, String content) {
+        this.type = type;
+        this.content = content;
+    }
 
     public Block toEntity() {
         return new Block(this.type, this.content);
+    }
+
+    public Block toImageEntity(String url) {
+        return new Block(this.type, url);
     }
 
     public String getType() {
@@ -20,4 +28,6 @@ public class BlockRequest {
     public String getContent() {
         return content;
     }
+
+
 }
