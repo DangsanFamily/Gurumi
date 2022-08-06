@@ -4,18 +4,27 @@ import io.gurumi.core.blocks.domain.Block;
 import io.gurumi.core.blocks.domain.BlockRepository;
 import io.gurumi.core.blocks.ui.dto.BlockRequest;
 import io.gurumi.core.blocks.ui.dto.BlockResponse;
+import io.gurumi.core.blocks.ui.dto.ImageBlockRequest;
+import io.gurumi.core.image.service.ImageService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @Transactional
 public class BlockService {
+
     @Value("${domain-name}")
     private String domainName;
+    @Value("${image-path}")
+    private String imagePath;
+
+    private final ImageService imageService;
     private final BlockRepository blockRepository;
 
-    public BlockService(BlockRepository blockRepository) {
+    public BlockService(ImageService imageService, BlockRepository blockRepository) {
+        this.imageService = imageService;
         this.blockRepository = blockRepository;
     }
 
@@ -36,12 +45,16 @@ public class BlockService {
         return BlockResponse.of(block);
     }
 
-    public BlockResponse createBlockForImage(BlockRequest blockRequest,String fileName){
-        String url=domainName+"/image/"+fileName;
-        Block block = blockRequest.toImageEntity(url);
+    public BlockResponse createImageBlock(ImageBlockRequest imageBlockRequest, MultipartFile image) {
+        String url = upload(image);
+        Block block = imageBlockRequest.toEntity(url);
         blockRepository.save(block);
         return BlockResponse.of(block);
+    }
 
+    private String upload(MultipartFile image) {
+        String fileName = imageService.uploadImage(image);
+        return String.format("%s%s%s", domainName, imagePath, fileName);
     }
 
     public BlockResponse updateBlock(Long blockId, BlockRequest blockRequest) {

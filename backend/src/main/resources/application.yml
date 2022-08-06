@@ -11,5 +11,6 @@ spring:
     hibernate:
       ddl-auto: create
 
-upload-path: "C:\\upload"
+upload-path: "/Users/pkeugine/Downloads"
 domain-name: "localhost:8080"
+image-path: "/image/"

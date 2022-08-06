@@ -1,28 +1,25 @@
 package io.gurumi.core.image.controller;
 
 
-import org.springframework.beans.factory.annotation.Value;
+import io.gurumi.core.image.service.ImageService;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
-
-import java.io.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/image")
 public class ImageController {
-    @Value("${upload-path}")
-    private String filePath;
 
-    @GetMapping(value="/{fileName}",produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] getImage(@PathVariable String fileName){
-        String pathName=filePath+ File.separator+fileName;
-        try{
-            InputStream in = new FileInputStream(pathName);
-            return in.readAllBytes();
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        return null;
+    private final ImageService imageService;
+
+    public ImageController(ImageService imageService) {
+        this.imageService = imageService;
     }
 
+    @GetMapping(value = "/{fileName}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public byte[] getImage(@PathVariable String fileName) {
+        return imageService.readImage(fileName);
+    }
 }
