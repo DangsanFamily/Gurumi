@@ -1,18 +1,29 @@
+import axios from "axios";
 import React, { useState } from "react";
-import "../MessageModal/style.css";
+import "./style.css";
 
-function MessageModal({ closeMessageModalFunc, registerMessageFunc, closeModalFunc }) {
+function TextModal({ closeTextModalFunc, registerBlockFunc, closeModalFunc }) {
     const [message, setMessage] = useState("");
     const cancelClicked = () => {
-        closeMessageModalFunc();
+        closeTextModalFunc();
     };
     const textareaHandler = (e) => {
         setMessage(e.target.value);
     };
     const registerMessage = () => {
-        registerMessageFunc(message);
-        closeMessageModalFunc();
-        closeModalFunc();
+        const req = {
+            type: "text",
+            content: message,
+        };
+        axios
+            .post("/blocks", req)
+            .then((res) => {
+                console.log(res.data);
+                registerBlockFunc(res.data.id);
+                closeTextModalFunc();
+                closeModalFunc();
+            })
+            .catch((err) => {});
     };
 
     return (
@@ -42,4 +53,4 @@ function MessageModal({ closeMessageModalFunc, registerMessageFunc, closeModalFu
     );
 }
 
-export default MessageModal;
+export default TextModal;

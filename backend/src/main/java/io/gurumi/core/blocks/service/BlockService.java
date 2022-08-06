@@ -4,13 +4,15 @@ import io.gurumi.core.blocks.domain.Block;
 import io.gurumi.core.blocks.domain.BlockRepository;
 import io.gurumi.core.blocks.ui.dto.BlockRequest;
 import io.gurumi.core.blocks.ui.dto.BlockResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
 public class BlockService {
-
+    @Value("${domain-name}")
+    private String domainName;
     private final BlockRepository blockRepository;
 
     public BlockService(BlockRepository blockRepository) {
@@ -32,6 +34,14 @@ public class BlockService {
         Block block = blockRequest.toEntity();
         blockRepository.save(block);
         return BlockResponse.of(block);
+    }
+
+    public BlockResponse createBlockForImage(BlockRequest blockRequest,String fileName){
+        String url=domainName+"/image/"+fileName;
+        Block block = blockRequest.toImageEntity(url);
+        blockRepository.save(block);
+        return BlockResponse.of(block);
+
     }
 
     public BlockResponse updateBlock(Long blockId, BlockRequest blockRequest) {

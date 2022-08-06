@@ -29,7 +29,7 @@
     overflow: auto;
 }
 
-.create-message-container .body-layer .cloud-container {
+.create-message-container .body-layer .block-container {
     align-items: center;
     padding-left: 5%;
     padding-right: 5%;
@@ -43,11 +43,11 @@
 .create-message-container .body-layer .right {
     margin-left: auto;
 }
-.create-message-container .body-layer .cloud-container .cloud {
+.create-message-container .body-layer .block-container .block {
     height: 150px;
 }
 
-.create-message-container .body-layer .cloud-add {
+.create-message-container .body-layer .block-add {
     align-items: center;
 
     display: flex;

@@ -22,6 +22,10 @@ public class BlockRequest {
         return new Block(this.type, this.content);
     }
 
+    public Block toImageEntity(String url) {
+        return new Block(this.type, url);
+    }
+
     public String getType() {
         return type;
     }
