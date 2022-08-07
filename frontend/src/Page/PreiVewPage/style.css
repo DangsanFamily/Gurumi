@@ -45,7 +45,7 @@
     overflow: auto;
 }
 
-.create-message-container .body-layer .block-container {
+.preview-message-container .body .block-container {
     align-items: center;
     padding-left: 5%;
     padding-right: 5%;
@@ -53,12 +53,12 @@
     height: 150px;
 }
 
-.create-message-container .body-layer .left {
+.preview-message-container .body .left {
     margin-right: auto;
 }
-.create-message-container .body-layer .right {
+.preview-message-container .body .right {
     margin-left: auto;
 }
-.create-message-container .body-layer .block-container .block {
+.preview-message-container .body .block-container .block {
     height: 150px;
 }

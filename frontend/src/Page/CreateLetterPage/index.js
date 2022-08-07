@@ -26,10 +26,10 @@ function CreateLetterPage() {
     //     setBlockIdList([...getBlockList])
     // }
     useEffect(() => {
-        // if(!(location.state.blockIdList)){
-        //     setBlockIdList(location.state.blockIdList)
-        // }
-        setBlockIdList(location.state.blockIdList)
+        if(location.state){
+            setBlockIdList(location.state.blockIdList)
+        }
+        
         // console.log(location.state.blockIdList)
     }, [])
     
