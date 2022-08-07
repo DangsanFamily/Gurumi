@@ -2,9 +2,9 @@ import React,{useState} from "react";
 import "./style.css";
 import { useNavigate,useLocation } from "react-router-dom";
 import { CgLogOut } from "react-icons/cg";
+import PreviewModal from "../../Components/PreviewModal/PreviewModal";
 
-
-const PreViewPage = (props) => {
+const PreViewPage = () => {
     const [previewModal, setPreviewModal] = useState(false);
     const [clickedBlockId, setClickedBlockId] = useState(0);
 
@@ -32,6 +32,7 @@ const PreViewPage = (props) => {
 
     return (
         <div className="preview-message-container">
+            {previewModal===true?<PreviewModal closePrevModalFunc={closePreviewModal}/>:null}
             <div className="header-container">
             <div className="back">
                 <CgLogOut onClick={back} size="30"></CgLogOut>
