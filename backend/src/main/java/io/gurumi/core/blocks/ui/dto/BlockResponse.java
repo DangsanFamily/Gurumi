@@ -4,7 +4,6 @@ import io.gurumi.core.blocks.domain.Block;
 
 public class BlockResponse {
 
-
     private final Long id;
     private final String type;
     private final String content;
