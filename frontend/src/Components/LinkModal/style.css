@@ -39,7 +39,7 @@
 
 .link-modal .body .preview-container {
     width: 90%;
-    height: 90%;
+    max-height: 80%;
     margin-bottom: 5%;
     margin-top: 2.5%;
     border-style: solid;
@@ -49,6 +49,8 @@
     overflow: hidden;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+
 }
 
 .link-modal .footer {
