@@ -8,7 +8,6 @@ public class UrlInfoResponse {
     private final String domainName;
 
 
-
     public UrlInfoResponse(String title, String description, String imgUrl, String domainName) {
         this.title = title;
         this.description = description;

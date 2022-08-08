@@ -19,7 +19,7 @@ public class UrlInfoController {
     }
 
     @GetMapping()
-    public ResponseEntity<UrlInfoResponse> getOpenGraph(@RequestParam String url){
+    public ResponseEntity<UrlInfoResponse> getOpenGraph(@RequestParam String url) {
         UrlInfoResponse body = openGraphService.getHtml(url);
         return ResponseEntity.ok(body);
     }
