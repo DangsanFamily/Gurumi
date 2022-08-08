@@ -16,14 +16,14 @@ public class Block {
     private Long id;
     private String type;
     private String content;
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Letter letter;
 
     protected Block() {
     }
 
-    public Block(String type,String content) {
-        this.type=type;
+    public Block(String type, String content) {
+        this.type = type;
         this.content = content;
     }
 

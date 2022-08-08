@@ -5,13 +5,7 @@ import io.gurumi.core.blocks.domain.Block;
 public class BlockRequest {
 
     private String type;
-
     private String content;
-
-    public BlockRequest(String type, String content) {
-        this.type = type;
-        this.content = content;
-    }
 
     public Block toEntity() {
         return new Block(this.type, this.content);

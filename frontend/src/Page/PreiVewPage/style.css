@@ -1,0 +1,64 @@
+.preview-message-container{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    top: 0;
+    max-width: 100%;
+    min-height: 100vh;
+}
+
+.preview-message-container .header-container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.preview-message-container .header{
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    margin-left: 29%;
+}
+
+.preview-message-container .back{
+    display: flex;
+    justify-content: flex-start;
+    color: white;
+    margin-left: 5%;
+}
+
+.preview-message-container .body{
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    overflow: auto;
+}
+
+.preview-message-container .body .block-container {
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    height: 150px;
+}
+
+.preview-message-container .body .left {
+    margin-right: auto;
+}
+.preview-message-container .body .right {
+    margin-left: auto;
+}
+.preview-message-container .body .block-container .block {
+    height: 150px;
+}

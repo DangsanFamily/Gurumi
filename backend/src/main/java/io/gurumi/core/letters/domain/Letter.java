@@ -23,24 +23,25 @@ public class Letter {
     protected Letter() {
     }
 
-    @OneToMany(mappedBy = "letter",fetch=FetchType.LAZY,cascade = {CascadeType.ALL})
-    private List<Block> blocks=new ArrayList<>();
+    @OneToMany(mappedBy = "letter", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    private List<Block> blocks = new ArrayList<>();
 
     public Letter(Long id) {
         this.id = id;
     }
 
-    public Letter(List<Block> blocks){
-        this.blocks=blocks;
+    public Letter(List<Block> blocks) {
+        this.blocks = blocks;
     }
 
-    public LetterResponse toResponse(){
-        List<BlockResponse> blockList=new ArrayList<>();
+    public LetterResponse toResponse() {
+        List<BlockResponse> blockList = new ArrayList<>();
         for (Block block : blocks) {
             blockList.add(BlockResponse.of(block));
         }
-        return new LetterResponse(id,blockList);
+        return new LetterResponse(id, blockList);
     }
+
     public Long getId() {
         return id;
     }
