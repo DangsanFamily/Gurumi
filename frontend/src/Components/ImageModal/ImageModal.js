@@ -2,29 +2,33 @@ import axios from "axios";
 import React, { useState } from "react";
 import "../ImageModal/style.css";
 
-function ImageModal({ closeImageModalFunc, closeModalFunc }) {
+function ImageModal({ closeImageModalFunc, closeModalFunc,registerBlockFunc }) {
     const [image, setImage] = useState(null);
     const [uploadFile, setuploadFile] = useState();
     const cancelClicked = () => {
         closeImageModalFunc();
     };
     const changeImage = (e) => {
-        setImage(URL.createObjectURL(e.target.files[0]));
+        var binaryData = [];
+        binaryData.push(e.target.files[0]);
+        
+        setImage(URL.createObjectURL(new Blob(binaryData, {type: "application/zip"})));
         setuploadFile(e.target.files[0]);
     };
     const registerImage = () => {
         const formData = new FormData();
         formData.append("type", "image");
-        formData.append("file", uploadFile);
-        // axios
-        //     .post("/blocks", formData)
-        //     .then((res) => {
-        //         closeImageModalFunc();
-        //         closeModalFunc();
-        //     })
-        //     .catch((err) => {});
-        closeImageModalFunc();
-        closeModalFunc();
+        formData.append("content",null);
+        formData.append("image", uploadFile);
+
+        axios
+            .post("/blocks", formData)
+            .then((res) => {
+                closeImageModalFunc();
+                closeModalFunc();
+                registerBlockFunc(res.data.id);
+            })
+            .catch((err) => {});
     };
     return (
         <div className="image-modal">

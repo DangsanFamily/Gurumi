@@ -3,7 +3,7 @@ import axios from "axios";
 import { BsTrash } from "react-icons/bs";
 import "./style.css";
 
-function BlockRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
+function TextRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
     const [content, setContent] = useState("");
     const [type, setType] = useState("");
     const [id, setId] = useState(block);
@@ -30,19 +30,19 @@ function BlockRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
         axios
             .patch(`/blocks/${id}`, body)
             .then((res) => {
-                closeModalFunc();
+                closeModalFunc(type);
             })
             .catch((err) => {});
     };
     const closeModal = () => {
-        closeModalFunc();
+        closeModalFunc(type);
     };
     const removeBlock = () => {
         axios
             .delete(`/blocks/${id}`)
             .then((res) => {
                 removeBlockFunc(id);
-                closeModalFunc();
+                closeModalFunc(type);
             })
             .catch((err) => {});
     };
@@ -71,4 +71,4 @@ function BlockRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
     );
 }
 
-export default BlockRevisedModal;
+export default TextRevisedModal;

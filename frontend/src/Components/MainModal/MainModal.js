@@ -55,7 +55,7 @@ function MainModal({ closeModalFunc, addBlockFunc }) {
             ) : null}
             {linkModal === true ? <LinkModal closeLinkModalFunc={closeLinkModal} /> : null}
             {imageModal === true ? (
-                <ImageModal closeImageModalFunc={closeImageModal} closeModalFunc={closeModal} />
+                <ImageModal closeImageModalFunc={closeImageModal} closeModalFunc={closeModal} registerBlockFunc={registerBlock}/>
             ) : null}
             {mainModal === true ? (
                 <div className="modal">
