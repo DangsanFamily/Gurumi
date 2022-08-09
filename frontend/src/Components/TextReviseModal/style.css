@@ -1,4 +1,4 @@
-.link-modal {
+.message-modal {
     position: fixed;
     width: 80%;
     max-width: 450px;
@@ -7,52 +7,45 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 20px 20px 20px 20px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
 }
-.link-modal .header {
+.message-modal .header {
     background-color: rgba(255, 255, 255, 0.8);
+
     font-size: 120%;
+
     width: 100%;
     height: 10%;
     border-radius: 20px 20px 0 0;
     border: solid #ff97bf;
 }
-.link-modal .body {
+.message-modal .body {
     background-color: rgba(255, 255, 255, 0.8);
     display: flex;
     flex-direction: column;
     align-items: center;
     border: solid #ff97bf;
-    max-height: 80%;
     border-top: 0px;
     width: 100%;
+    height: 80%;
 }
-.link-modal .body .input-container {
-    width: 90%;
-    padding-top: 2.5%;
-    display: flex;
+.message-modal .body .color-container {
+    width: 100%;
+    height: 20%;
+}
+.message-modal .body .message-container {
+    width: 100%;
+    height: 80%;
+    align-items: center;
     justify-content: center;
-}
-.link-modal .body .input-container .input-text {
-    width: 80%;
-}
-.link-modal .body .input-container .button {
-    width: 20%;
-}
-.link-modal .body .preview-container {
-    width: 90%;
-    margin-bottom: 5%;
-    margin-top: 2.5%;
-    overflow: hidden;
     display: flex;
-    justify-content: center;
-    flex-direction: column;
 }
-
-.link-modal .footer {
+.message-modal .body .message-container .message {
+    width: 90%;
+    height: 90%;
+    resize: none;
+    border: solid #ff97bf 1px;
+}
+.message-modal .footer {
     background-color: rgba(255, 255, 255, 0.8);
     display: flex;
     overflow: hidden;
@@ -62,7 +55,7 @@
     width: 100%;
     height: 10%;
 }
-.link-modal .footer .cancel {
+.message-modal .footer .cancel {
     width: 50%;
     height: 100%;
     display: flex;
@@ -71,7 +64,7 @@
 
     color: #ff97bf;
 }
-.link-modal .footer .register {
+.message-modal .footer .register {
     width: 50%;
     height: 100%;
     display: flex;
@@ -83,7 +76,7 @@
     color: white;
 }
 
-.link-modal .header .title {
+.message-modal .header .title {
     text-align: center;
     color: #ff97bf;
 }

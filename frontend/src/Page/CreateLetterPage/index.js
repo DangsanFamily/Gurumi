@@ -1,24 +1,29 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { CgAdd } from "react-icons/cg";
 import "./style.css";
 import MainModal from "../../Components/MainModal/MainModal";
-import BlockRevisedModal from "../../Components/BlockReviseModal/BlockReviseModal";
-import {useNavigate,useLocation} from "react-router-dom";
+import TextRevisedModal from "../../Components/TextReviseModal/BlockReviseModal";
+import ImageRevisedModal from "../../Components/ImageReviseModal/ImageRevisedModal";
+import LinkRevisedModal from "../../Components/LinkReviseModal/LinkReviseModal";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 function CreateLetterPage() {
     const [modal, setModal] = useState(false);
 
     const [blockIdList, setBlockIdList] = useState([]);
-    const [blockRevisedModal, setBlockRevisedModal] = useState(false);
+    const [textRevisedModal, setTextRevisedModal] = useState(false);
+    const [imageRevisedModal, setImageRevisedModal] = useState(false);
+    const [linkRevisedModal, setLinkRevisedModal] = useState(false);
     const [clickedBlockId, setClickedBlockId] = useState(0);
 
     const navigate = useNavigate();
     const location = useLocation();
     const preview = () => {
-        navigate("/preview",{
+        navigate("/preview", {
             state: {
                 blockIdList: blockIdList,
-            }
+            },
         });
     };
     // const getBlockList = location.state.blockIdList;
@@ -26,13 +31,13 @@ function CreateLetterPage() {
     //     setBlockIdList([...getBlockList])
     // }
     useEffect(() => {
-        if(location.state){
-            setBlockIdList(location.state.blockIdList)
+        if (location.state) {
+            setBlockIdList(location.state.blockIdList);
         }
-        
+
         // console.log(location.state.blockIdList)
-    }, [])
-    
+    }, []);
+
     const addBlock = (id) => {
         setBlockIdList([...blockIdList, id]);
     };
@@ -45,10 +50,29 @@ function CreateLetterPage() {
 
     const showBlockRevisedModal = (id) => {
         setClickedBlockId(id);
-        setBlockRevisedModal(true);
+        axios
+            .get(`/blocks/${id}`)
+            .then((res) => {
+                if (res.data.type === "text") {
+                    setTextRevisedModal(true);
+                } else if (res.data.type === "image") {
+                    setImageRevisedModal(true);
+                } else if (res.data.type === "link") {
+                    setLinkRevisedModal(true);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
-    const closeRevisedBlockModal = () => {
-        setBlockRevisedModal(false);
+    const closeRevisedBlockModal = (type) => {
+        if (type === "text") {
+            setTextRevisedModal(false);
+        } else if (type === "image") {
+            setImageRevisedModal(false);
+        } else if (type === "link") {
+            setLinkRevisedModal(false);
+        }
     };
 
     const removeBlock = (id) => {
@@ -58,8 +82,22 @@ function CreateLetterPage() {
     return (
         <div className="create-message-container">
             {modal === true ? <MainModal closeModalFunc={closeModal} addBlockFunc={addBlock} /> : null}
-            {blockRevisedModal === true ? (
-                <BlockRevisedModal
+            {textRevisedModal === true ? (
+                <TextRevisedModal
+                    block={clickedBlockId}
+                    closeModalFunc={closeRevisedBlockModal}
+                    removeBlockFunc={removeBlock}
+                />
+            ) : null}
+            {imageRevisedModal === true ? (
+                <ImageRevisedModal
+                    block={clickedBlockId}
+                    closeModalFunc={closeRevisedBlockModal}
+                    removeBlockFunc={removeBlock}
+                />
+            ) : null}
+            {linkRevisedModal === true ? (
+                <LinkRevisedModal
                     block={clickedBlockId}
                     closeModalFunc={closeRevisedBlockModal}
                     removeBlockFunc={removeBlock}
@@ -91,7 +129,9 @@ function CreateLetterPage() {
 
             <div className="button-layer">
                 <div className="left">
-                    <button className="button" onClick={preview}>미리 보기</button>
+                    <button className="button" onClick={preview}>
+                        미리 보기
+                    </button>
                 </div>
                 <div className="right">
                     <button className="button">전송하기</button>
