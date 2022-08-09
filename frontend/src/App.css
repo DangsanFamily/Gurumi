@@ -1,47 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Gugi&family=Nanum+Pen+Script&family=Stylish&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Gugi&family=Nanum+Pen+Script&family=Stylish&display=swap");
 .App {
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  margin: 0 auto;
-  max-width: 500px;
-  min-height: 100vh;
-  font-family: 'Gugi', cursive;
-  vertical-align: baseline;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    margin: 0 auto;
+    max-width: 500px;
+    min-height: 100vh;
+    font-family: "Gugi", cursive;
+    vertical-align: baseline;
+}
+.body {
+    box-sizing: border-box;
+}
+.header {
+    box-sizing: border-box;
+}
+.footer {
+    box-sizing: border-box;
+}
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0);
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

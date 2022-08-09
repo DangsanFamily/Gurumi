@@ -16,14 +16,12 @@
     width: 100%;
     height: 10%;
     border-radius: 20px 20px 0 0;
-    border: solid #ff97bf;
 }
 .message-modal .body {
     background-color: rgba(255, 255, 255, 0.8);
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: solid #ff97bf;
     border-top: 0px;
     width: 100%;
     height: 80%;
@@ -43,13 +41,12 @@
     width: 90%;
     height: 90%;
     resize: none;
-    border: solid #ff97bf 1px;
 }
 .message-modal .footer {
     background-color: rgba(255, 255, 255, 0.8);
     display: flex;
     overflow: hidden;
-    border: solid #ff97bf;
+
     border-top: 0px;
     border-radius: 0 0 20px 20px;
     width: 100%;
