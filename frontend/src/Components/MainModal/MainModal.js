@@ -43,7 +43,7 @@ function MainModal({ closeModalFunc, addBlockFunc }) {
     };
 
     return (
-        <>
+        <div className="modal-background">
             {" "}
             {textModal === true ? (
                 <TextModal
@@ -53,9 +53,19 @@ function MainModal({ closeModalFunc, addBlockFunc }) {
                     isNew={true}
                 />
             ) : null}
-            {linkModal === true ? <LinkModal closeLinkModalFunc={closeLinkModal} /> : null}
+            {linkModal === true ? (
+                <LinkModal
+                    closeLinkModalFunc={closeLinkModal}
+                    registerBlockFunc={registerBlock}
+                    closeModalFunc={closeModal}
+                />
+            ) : null}
             {imageModal === true ? (
-                <ImageModal closeImageModalFunc={closeImageModal} closeModalFunc={closeModal} />
+                <ImageModal
+                    closeImageModalFunc={closeImageModal}
+                    closeModalFunc={closeModal}
+                    registerBlockFunc={registerBlock}
+                />
             ) : null}
             {mainModal === true ? (
                 <div className="modal">
@@ -70,7 +80,7 @@ function MainModal({ closeModalFunc, addBlockFunc }) {
                     </div>
                 </div>
             ) : null}
-        </>
+        </div>
     );
 }
 

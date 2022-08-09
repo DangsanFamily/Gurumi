@@ -1,0 +1,36 @@
+.thumbnail-container {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.thumbnail-container .img-container {
+    width: 100%;
+    max-height: 75%;
+    object-fit: cover;
+}
+.thumbnail-container .title-container {
+    margin: auto;
+    text-align: left;
+    font-size: 15px;
+    width: 95%;
+}
+.thumbnail-container .description-container {
+    width: 95%;
+    font-size: 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 10px;
+    text-align: left;
+}
+.thumbnail-container .url-container {
+    width: 95%;
+    font-size: 10px;
+    text-align: left;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: gray;
+}
