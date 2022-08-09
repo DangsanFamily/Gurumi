@@ -18,7 +18,7 @@ resource "aws_instance" "dev_app_server" {
   ami                    = "ami-0ea5eb4b05645aa8a"
   instance_type          = "t2.micro"
   key_name               = "gurumi-key"
-  vpc_security_group_ids = [aws_security_group.dev_nginx_security_group.id]
+  vpc_security_group_ids = [aws_security_group.dev_security_group.id]
 
   tags = {
     Name = "DevAppServer"
@@ -29,14 +29,14 @@ resource "aws_instance" "dev_nginx_server" {
   ami                    = "ami-0ea5eb4b05645aa8a"
   instance_type          = "t2.micro"
   key_name               = "gurumi-key"
-  vpc_security_group_ids = [aws_security_group.dev_nginx_security_group.id]
+  vpc_security_group_ids = [aws_security_group.dev_security_group.id]
 
   tags = {
     Name = "DevNginxServer"
   }
 }
 
-resource "aws_security_group" "dev_nginx_security_group" {
+resource "aws_security_group" "dev_security_group" {
   egress = [
     {
       cidr_blocks      = ["0.0.0.0/0", ]
