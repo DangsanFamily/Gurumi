@@ -48,23 +48,25 @@ function TextRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
     };
 
     return (
-        <div className="message-modal">
-            <div className="header" style={{ backgroundColor: "red", borderColor: "red", opacity: "0.8" }}>
-                <BsTrash color="black" size="32" onClick={removeBlock}></BsTrash>
-            </div>
-            <div className="body">
-                <div className="color-container"></div>
-                <div className="message-container">
-                    <textarea className="message" defaultValue={content} onChange={textareaHandler}></textarea>
+        <div className="modal-background">
+            <div className="message-modal">
+                <div className="header" style={{ backgroundColor: "red", borderColor: "red", opacity: "0.8" }}>
+                    <BsTrash color="black" size="32" onClick={removeBlock}></BsTrash>
                 </div>
-            </div>
-            <div className="footer">
-                <div className="cancel" onClick={closeModal}>
-                    취소
+                <div className="body">
+                    <div className="color-container"></div>
+                    <div className="message-container">
+                        <textarea className="message" defaultValue={content} onChange={textareaHandler}></textarea>
+                    </div>
                 </div>
+                <div className="footer">
+                    <div className="cancel" onClick={closeModal}>
+                        취소
+                    </div>
 
-                <div className="register" onClick={reviseBlock}>
-                    수정
+                    <div className="register" onClick={reviseBlock}>
+                        수정
+                    </div>
                 </div>
             </div>
         </div>
