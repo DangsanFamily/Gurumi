@@ -15,10 +15,10 @@ public class Block {
 
     private String content;
 
-    //private TimeEntity timeEntity;
+    private String originFileName;
 
-    /*@OneToMany(mappedBy ="post", orphanRemoval = true)
-    private List<PostImage> postImages = new ArrayList<>();*/
+    private String fullPath;
+
 
     @ManyToOne(fetch=FetchType.LAZY)
     private Letter letter;
@@ -26,9 +26,11 @@ public class Block {
     protected Block(){
     }
 
-    public Block(String type, String content){
+    public Block(String type, String content, String originFileName, String fullPath){
         this.type = type;
         this.content = content;
+        this.originFileName = originFileName;
+        this.fullPath = fullPath;
     }
 
     public void update(Block other){
@@ -47,11 +49,7 @@ public class Block {
         return this.content;
     }
 
-    /*@Override
-    public void setTimeEntity(TimeEntity timeEntity){
-        this.timeEntity = timeEntity;
-    }*/
+    public String getOriginFileName() {return this.originFileName;}
 
-
-
+    public String getFullPath(){return this.fullPath;}
 }

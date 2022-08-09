@@ -4,13 +4,20 @@ import io.gurumi.core.blocks.domain.Block;
 import io.gurumi.core.blocks.domain.BlockRepository;
 import io.gurumi.core.blocks.ui.dto.BlockRequest;
 import io.gurumi.core.blocks.ui.dto.BlockResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.PostConstruct;
+
 @Service
 @Transactional
 public class BlockService {
 
         private final BlockRepository blockRepository;
+        @Value("${ImageFilePath}")
+        private String filepath;
 
         public BlockService(BlockRepository blockRepository){
             this.blockRepository = blockRepository;
@@ -42,6 +49,14 @@ public class BlockService {
 
         public void deleteBlock(Long blockId){
             blockRepository.deleteById(blockId);
+        }
+
+
+        // 이미지 업로드
+        public BlockResponse uploadImage(BlockRequest blockRequest, MultipartFile image){
+            Block block = blockRequest.toEntity();
+            blockRepository.save(block);
+            return BlockResponse.of(block);
         }
 
 }

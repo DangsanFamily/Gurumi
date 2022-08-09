@@ -3,9 +3,10 @@ package io.gurumi.core.blocks.ui;
 import io.gurumi.core.blocks.service.BlockService;
 import io.gurumi.core.blocks.ui.dto.BlockRequest;
 import io.gurumi.core.blocks.ui.dto.BlockResponse;
-import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URI;
 
@@ -43,5 +44,14 @@ public class BlockController {
         blockService.deleteBlock(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<BlockResponse> uploadImage(@RequestBody BlockRequest blockRequest, @RequestPart MultipartFile image) throws Exception{
+        URI location = URI.create("abcd");
+        BlockResponse blockResponse = blockService.uploadImage(blockRequest, image);
+        return ResponseEntity.created(location).body(blockResponse);
+    }
+
 
 }
