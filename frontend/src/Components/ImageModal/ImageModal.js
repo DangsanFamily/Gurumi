@@ -4,7 +4,7 @@ import "../ImageModal/style.css";
 
 function ImageModal({ closeImageModalFunc, closeModalFunc, registerBlockFunc }) {
     const [image, setImage] = useState(null);
-    const [uploadFile, setuploadFile] = useState();
+    const [uploadFile, setuploadFile] = useState(null);
     const cancelClicked = () => {
         closeImageModalFunc();
     };
@@ -16,6 +16,10 @@ function ImageModal({ closeImageModalFunc, closeModalFunc, registerBlockFunc }) 
         setuploadFile(e.target.files[0]);
     };
     const registerImage = () => {
+        if (!uploadFile) {
+            alert("파일을 선택해주세요!");
+            return;
+        }
         const formData = new FormData();
         formData.append("type", "image");
         formData.append("content", null);

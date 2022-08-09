@@ -6,9 +6,7 @@ import "../ImageModal/style.css";
 function ImageRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
     const [image, setImage] = useState(null);
     const [type, setType] = useState("");
-    const [uploadFile, setuploadFile] = useState(
-        "http://localhost:8080/image/d25a8cb0-6a83-4833-b71a-43b281f3fc1btest.jpg",
-    );
+    const [uploadFile, setuploadFile] = useState(null);
     const [id, setId] = useState(block);
     useEffect(() => {
         axios
@@ -29,7 +27,7 @@ function ImageRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
         setuploadFile(e.target.files[0]);
     };
     const reviseImage = () => {
-        if (uploadFile === null) {
+        if (!uploadFile) {
             alert("이미지를 수정하세요!");
             return;
         }

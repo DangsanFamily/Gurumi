@@ -11,6 +11,10 @@ function TextModal({ closeTextModalFunc, registerBlockFunc, closeModalFunc }) {
         setMessage(e.target.value);
     };
     const registerMessage = () => {
+        if (!message.replace(/\s/g, "").length) {
+            alert("메세지가 공백입니다!");
+            return;
+        }
         const req = {
             type: "text",
             content: message,

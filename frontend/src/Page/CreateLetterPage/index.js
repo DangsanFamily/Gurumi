@@ -1,10 +1,11 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { CgAdd } from "react-icons/cg";
 import "./style.css";
 import MainModal from "../../Components/MainModal/MainModal";
 import TextRevisedModal from "../../Components/TextReviseModal/BlockReviseModal";
 import ImageRevisedModal from "../../Components/ImageReviseModal/ImageRevisedModal";
-import {useNavigate,useLocation} from "react-router-dom";
+import LinkRevisedModal from "../../Components/LinkReviseModal/LinkReviseModal";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 function CreateLetterPage() {
@@ -13,15 +14,16 @@ function CreateLetterPage() {
     const [blockIdList, setBlockIdList] = useState([]);
     const [textRevisedModal, setTextRevisedModal] = useState(false);
     const [imageRevisedModal, setImageRevisedModal] = useState(false);
+    const [linkRevisedModal, setLinkRevisedModal] = useState(false);
     const [clickedBlockId, setClickedBlockId] = useState(0);
 
     const navigate = useNavigate();
     const location = useLocation();
     const preview = () => {
-        navigate("/preview",{
+        navigate("/preview", {
             state: {
                 blockIdList: blockIdList,
-            }
+            },
         });
     };
     // const getBlockList = location.state.blockIdList;
@@ -29,13 +31,13 @@ function CreateLetterPage() {
     //     setBlockIdList([...getBlockList])
     // }
     useEffect(() => {
-        if(location.state){
-            setBlockIdList(location.state.blockIdList)
+        if (location.state) {
+            setBlockIdList(location.state.blockIdList);
         }
-        
+
         // console.log(location.state.blockIdList)
-    }, [])
-    
+    }, []);
+
     const addBlock = (id) => {
         setBlockIdList([...blockIdList, id]);
     };
@@ -51,26 +53,26 @@ function CreateLetterPage() {
         axios
             .get(`/blocks/${id}`)
             .then((res) => {
-                if(res.data.type==="text"){
+                if (res.data.type === "text") {
                     setTextRevisedModal(true);
-                }
-                else if(res.data.type==="image"){
-                    setImageRevisedModal(true)
+                } else if (res.data.type === "image") {
+                    setImageRevisedModal(true);
+                } else if (res.data.type === "link") {
+                    setLinkRevisedModal(true);
                 }
             })
             .catch((err) => {
                 console.log(err);
             });
-   
     };
     const closeRevisedBlockModal = (type) => {
-        if (type==="text"){
+        if (type === "text") {
             setTextRevisedModal(false);
+        } else if (type === "image") {
+            setImageRevisedModal(false);
+        } else if (type === "link") {
+            setLinkRevisedModal(false);
         }
-        else if(type==="image"){
-            setImageRevisedModal(false)
-        }
-        
     };
 
     const removeBlock = (id) => {
@@ -89,6 +91,13 @@ function CreateLetterPage() {
             ) : null}
             {imageRevisedModal === true ? (
                 <ImageRevisedModal
+                    block={clickedBlockId}
+                    closeModalFunc={closeRevisedBlockModal}
+                    removeBlockFunc={removeBlock}
+                />
+            ) : null}
+            {linkRevisedModal === true ? (
+                <LinkRevisedModal
                     block={clickedBlockId}
                     closeModalFunc={closeRevisedBlockModal}
                     removeBlockFunc={removeBlock}
@@ -120,7 +129,9 @@ function CreateLetterPage() {
 
             <div className="button-layer">
                 <div className="left">
-                    <button className="button" onClick={preview}>미리 보기</button>
+                    <button className="button" onClick={preview}>
+                        미리 보기
+                    </button>
                 </div>
                 <div className="right">
                     <button className="button">전송하기</button>

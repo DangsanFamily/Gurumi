@@ -53,7 +53,13 @@ function MainModal({ closeModalFunc, addBlockFunc }) {
                     isNew={true}
                 />
             ) : null}
-            {linkModal === true ? <LinkModal closeLinkModalFunc={closeLinkModal} /> : null}
+            {linkModal === true ? (
+                <LinkModal
+                    closeLinkModalFunc={closeLinkModal}
+                    registerBlockFunc={registerBlock}
+                    closeModalFunc={closeModal}
+                />
+            ) : null}
             {imageModal === true ? (
                 <ImageModal
                     closeImageModalFunc={closeImageModal}

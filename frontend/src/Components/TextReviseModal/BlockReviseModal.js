@@ -23,6 +23,10 @@ function TextRevisedModal({ block, closeModalFunc, removeBlockFunc }) {
     }, []);
 
     const reviseBlock = () => {
+        if (!content.replace(/\s/g, "").length) {
+            alert("메세지가 공백입니다!");
+            return;
+        }
         const body = {
             type: type,
             content: content,
