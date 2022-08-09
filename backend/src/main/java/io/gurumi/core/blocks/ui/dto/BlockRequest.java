@@ -7,6 +7,11 @@ public class BlockRequest {
     private String type;
     private String content;
 
+    public BlockRequest(String type, String content) {
+        this.type = type;
+        this.content = content;
+    }
+
     public Block toEntity() {
         return new Block(this.type, this.content);
     }
@@ -21,6 +26,10 @@ public class BlockRequest {
 
     public String getContent() {
         return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
 

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class BlockService {
+
     @Value("${domain-name}")
     private String domainName;
     private final BlockRepository blockRepository;
@@ -36,8 +37,8 @@ public class BlockService {
         return BlockResponse.of(block);
     }
 
-    public BlockResponse createBlockForImage(BlockRequest blockRequest,String fileName){
-        String url=domainName+"/image/"+fileName;
+    public BlockResponse createBlockForImage(BlockRequest blockRequest, String fileName) {
+        String url = domainName + "/image/" + fileName;
         Block block = blockRequest.toImageEntity(url);
         blockRepository.save(block);
         return BlockResponse.of(block);
@@ -45,6 +46,15 @@ public class BlockService {
     }
 
     public BlockResponse updateBlock(Long blockId, BlockRequest blockRequest) {
+        Block existedBlock = findById(blockId);
+        Block updatedBlock = blockRequest.toEntity();
+        existedBlock.update(updatedBlock);
+        return BlockResponse.of(existedBlock);
+    }
+
+    public BlockResponse updateBlockForImage(Long blockId, BlockRequest blockRequest, String fileName) {
+        String url = domainName + "/image/" + fileName;
+        blockRequest.setContent(url);
         Block existedBlock = findById(blockId);
         Block updatedBlock = blockRequest.toEntity();
         existedBlock.update(updatedBlock);
