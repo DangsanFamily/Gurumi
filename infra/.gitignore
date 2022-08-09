@@ -1,2 +1,4 @@
+setupTerraform.sh
+.terraform*
 *.pem
 pkeugine_accessKeys.csv
