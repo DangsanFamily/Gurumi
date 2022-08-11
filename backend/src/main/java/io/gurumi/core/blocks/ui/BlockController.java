@@ -52,9 +52,6 @@ public class BlockController {
         return ResponseEntity.ok(blockResponse);
     }
 
-    //이미지 수정
-
-
     @PostMapping("/{id}")
     public ResponseEntity<BlockResponse> updateBlock(@PathVariable Long id, @RequestBody BlockRequest blockRequest) {
         BlockResponse blockResponse = blockService.updateBlock(id, blockRequest);

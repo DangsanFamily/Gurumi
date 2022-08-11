@@ -12,4 +12,5 @@ spring:
       ddl-auto: create
 
 
-upload-path: "C:\\Temp"
+upload-path: "C:\\Temp\\"
+domain-name: "http://localhost:8080"
