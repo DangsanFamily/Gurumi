@@ -15,13 +15,3 @@ spring:
 upload-path: "C:\\Temp"
 
 cloud:
-  aws:
-    credentials:
-      accessKey: AKIAWPZT6RJRIDLXOFNX       # AWS IAM AccessKey 적기
-      secretKey: QMWmPDAlS9SHSXKYTuJUt3PFkobkyvtNCYk7Z6/l   # AWS IAM SecretKey 적기
-    s3:
-      bucket: gurumi-bucket
-    region:
-      static: ap-northeast-2
-    stack:
-      auto: false
