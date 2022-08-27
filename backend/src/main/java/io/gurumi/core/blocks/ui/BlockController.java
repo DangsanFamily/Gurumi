@@ -7,6 +7,7 @@ import io.gurumi.core.blocks.ui.dto.BlockResponse;
 import java.io.IOException;
 import java.net.URI;
 
+import io.gurumi.core.image.service.AwsS3UploadService;
 import io.gurumi.core.image.service.ImageService;
 import io.gurumi.core.image.service.LocalImageService;
 import org.springframework.http.MediaType;
@@ -21,7 +22,7 @@ public class BlockController {
     private final ImageService imageService;
     private final BlockService blockService;
 
-    public BlockController(LocalImageService imageService, BlockService blockService) {
+    public BlockController(AwsS3UploadService imageService, BlockService blockService) {
         this.imageService = imageService;
         this.blockService = blockService;
     }
@@ -45,15 +46,28 @@ public class BlockController {
         System.out.println(blockRequest.getType());
         System.out.println(image.getOriginalFilename());
 
-        String name = imageService.uploadImage(image);
-        String url = imageService.makeUrlImage(name);
+        String url = imageService.uploadImage(image);
+        // nString url = imageService.makeUrlImage(name);
+        //추가
+//        String s3File = imageService.uploadFiles(image,"static" );
 
         BlockResponse blockResponse = blockService.createBlockForImage(blockRequest, url);
         return ResponseEntity.ok(blockResponse);
     }
 
-    //이미지 수정
+    //이미지 업로드 aws
+    /*@PostMapping("/api/v1/upload")
+    public ResponseEntity<BlockResponse> uploadImageS3(@RequestPart MultipartFile file) throws IllegalAccessException, IOException {
 
+        System.out.println(file.getOriginalFilename());
+
+        String image = imageService.createImageS3(file);
+        BlockResponse blockResponse = imageService.createImageS3(file);
+
+        return ResponseEntity.ok(blockResponse);
+    }*/
+
+    //이미지 수정
 
     @PostMapping("/{id}")
     public ResponseEntity<BlockResponse> updateBlock(@PathVariable Long id, @RequestBody BlockRequest blockRequest) {
