@@ -13,6 +13,7 @@ public interface ImageService {
     String uploadImage(MultipartFile file) throws IOException;
 
     String makeUrlImage(String name);
+
     void deleteImage();
 
     //s3
